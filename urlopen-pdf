@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+set -xe
+
+OUTFILE=$(mktemp 'urlopen-pdf_XXXXXX')_$(basename "$1")
+trap "rm '$OUTFILE'" INT TERM EXIT
+
+wget -O "$OUTFILE" "$1"
+evince -f "$OUTFILE" 
